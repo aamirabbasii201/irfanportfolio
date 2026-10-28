@@ -41,7 +41,7 @@ const PROFILE = {
   initials: "IA",
   // Put your photo in  public/images/  and set the file name here.
   // Best: portrait, about 800 x 1000 px, .jpg or .webp
-  photo: "/images/irfan.jpg",
+  photo: "/images/irfan.webp",
   role: "Senior Marketing Professional",
   headline: "I Build Brands That Move Businesses Forward.",
   email: "irfanasghar@marketing.com",
