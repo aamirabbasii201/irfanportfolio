@@ -1172,27 +1172,58 @@ function Approach() {
 
 function Statement() {
   return (
-    <section className="statement-section">
+    <section className="statement-section" aria-label="My marketing philosophy">
       <div className="container-wide">
         <Reveal>
-          <div className="statement-inner">
-            <span className="statement-quote" aria-hidden="true">
-              "
-            </span>
+          <div className="statement-inner statement-editorial">
+            {/* Portrait — separate image so the quote stays editable and responsive */}
+            <div className="statement-photo-column">
+              <div className="statement-photo-orbit" aria-hidden="true" />
+              <figure className="statement-photo-frame">
+                <img
+                  src="/images/irfan-quote-standing.webp"
+                  alt="Irfan Asghar, senior marketing professional, standing in an executive office"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div className="statement-photo-badge">
+                <span className="statement-badge-dot" aria-hidden="true" />
+                <div>
+                  <strong>IRFAN ASGHAR</strong>
+                  <span>SENIOR MARKETING PROFESSIONAL</span>
+                </div>
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </div>
+              <span className="statement-vertical-type" aria-hidden="true">
+                STRATEGY / BRAND / GROWTH
+              </span>
+            </div>
 
-            <h2>
-              The best marketing
-              <br />
-              doesn't just get
-              <br />
-              <span>attention.</span>
-              <br />
-              It earns trust.
-            </h2>
-
-            <div className="statement-footer">
-              <span>{PROFILE.name.toUpperCase()}</span>
-              <span>MY MARKETING PHILOSOPHY</span>
+            {/* Original quote, now styled like an editorial feature */}
+            <div className="statement-editorial-copy">
+              <div className="statement-editorial-label">
+                <span className="statement-label-line" />
+                THE THINKING BEHIND THE WORK
+              </div>
+              <span className="statement-quote" aria-hidden="true">“</span>
+              <h2>
+                The best marketing
+                <br />
+                doesn't just get
+                <br />
+                <span>attention.</span>
+                <br />
+                It earns trust.
+              </h2>
+              <p className="statement-editorial-note">
+                The strongest brands are built where smart strategy, memorable creativity,
+                and measurable results meet.
+              </p>
+              <div className="statement-footer">
+                <span>{PROFILE.name.toUpperCase()}</span>
+                <span>MY MARKETING PHILOSOPHY</span>
+              </div>
             </div>
           </div>
         </Reveal>
