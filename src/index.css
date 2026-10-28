@@ -4609,3 +4609,40 @@ html {
   .statement-photo-orbit { animation: none; }
   .statement-photo-frame img { transition: none; }
 }
+
+
+
+
+/* =====================================
+   FIX CUSTOMER FIRST CIRCLE ALIGNMENT
+   Focus Areas — Retention & Lifecycle
+===================================== */
+
+.lifecycle-art {
+  position: relative;
+}
+
+.lifecycle-center {
+  position: absolute;
+
+  /* Exact center of outer circle */
+  top: 50%;
+  left: 50%;
+
+  width: 57%;
+  height: 57%;
+
+  /* Center precisely and preserve rotation */
+  transform: translate(-50%, -50%) rotate(10deg);
+  transform-origin: center;
+
+  /* Center the text inside */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  text-align: center;
+  border-radius: 50%;
+}

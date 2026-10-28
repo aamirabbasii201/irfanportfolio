@@ -43,7 +43,7 @@ const PROFILE = {
   // Best: portrait, about 800 x 1000 px, .jpg or .webp
   photo: "/images/irfan.jpg",
   role: "Senior Marketing Professional",
-  headline: "I build brands that move businesses forward.",
+  headline: "I build Brands That Move Businesses Forward.",
   email: "irfanasghar@marketing.com",
   phone: "+92 300 1234567",
   whatsapp: "923001234567",
