@@ -43,12 +43,12 @@ const PROFILE = {
   // Best: portrait, about 800 x 1000 px, .jpg or .webp
   photo: "/images/irfan.jpg",
   role: "Senior Marketing Professional",
-  headline: "I build Brands That Move Businesses Forward.",
+  headline: "I Build Brands That Move Businesses Forward.",
   email: "irfanasghar@marketing.com",
   phone: "+92 300 1234567",
   whatsapp: "923001234567",
   location: "Islamabad, Pakistan",
-  availability: "Available for Q1 2027 Projects",
+  availability: "Available For Q1 2027 Projects",
   linkedin: "https://www.linkedin.com/in/irfan-asghar-3a8722173/",
   instagram: "https://instagram.com/irfanasghar",
   facebook: "https://facebook.com/irfanasghar",
@@ -56,11 +56,11 @@ const PROFILE = {
 };
 
 /**
- * Optional: paste a Formspree / Getform / similar endpoint here and the
- * contact form will POST to it. Leave empty to fall back to the visitor's
- * email app (mailto), so the form never silently drops a message.
+ * Contact form delivery (Formspree). Messages are emailed to the address
+ * connected to this form in your Formspree dashboard.
+ * If this is ever left empty, the form falls back to the visitor's email app.
  */
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://formspree.io/f/mljgpvvw";
 
 const SLIDE_INTERVAL_MS = 5000;
 
@@ -95,19 +95,19 @@ const ABOUT_HIGHLIGHTS = [
 const PRINCIPLES = [
   {
     icon: Target,
-    title: "Think strategically.",
+    title: "Think Strategically.",
     copy: "Every decision starts with the business goal, the audience, and the numbers behind them.",
     accent: "violet",
   },
   {
     icon: Sparkles,
-    title: "Create intentionally.",
+    title: "Create Intentionally.",
     copy: "Ideas and creative are built to serve a clear purpose, never just to decorate.",
     accent: "cyan",
   },
   {
     icon: BarChart3,
-    title: "Measure meaningfully.",
+    title: "Measure Meaningfully.",
     copy: "Track the metrics that show real impact, then use them to improve what comes next.",
     accent: "gold",
   },
@@ -1271,8 +1271,8 @@ function useContactForm() {
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(values),
+        body: new FormData(event.currentTarget),
+        headers: { Accept: "application/json" },
       });
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       finish("sent");
@@ -1304,10 +1304,18 @@ function ContactForm() {
 
   return (
     <form onSubmit={submit} className="contact-form">
+      {/* Spam trap: real visitors never see or fill this. */}
+      <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+        <label htmlFor="contact-website">Leave this empty</label>
+        <input id="contact-website" type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+      </div>
+      <input type="hidden" name="_subject" value={`New project brief from ${values.name || "your portfolio"}`} />
+
       <div className="form-group">
         <label htmlFor="contact-name">Full Name</label>
         <input
           id="contact-name"
+          name="name"
           type="text"
           autoComplete="name"
           placeholder="John Smith"
@@ -1321,6 +1329,7 @@ function ContactForm() {
         <label htmlFor="contact-email">Email Address</label>
         <input
           id="contact-email"
+          name="email"
           type="email"
           autoComplete="email"
           placeholder="john@company.com"
@@ -1334,6 +1343,7 @@ function ContactForm() {
         <label htmlFor="contact-message">Project Brief</label>
         <textarea
           id="contact-message"
+          name="message"
           rows={5}
           placeholder="Tell me about your project, goals, and timeline..."
           required

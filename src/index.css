@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 
 /* ============================================
@@ -3600,381 +3599,81 @@ body {
 }
 
 /* ==========================================================
-   PROFILE PHOTO: add anywhere in your CSS (end of file is fine)
-   Also includes the email-card rules from channel-main.css
+   SLOW NEON LIGHT AROUND THE CORNERS
+   Paste at the VERY END, after premium-neon.css
    ========================================================== */
 
-@property --neon-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
+/* A short, bright beam (two of them, opposite sides) that glides
+   slowly around the whole edge of each block. */
 
-/* ---------- Navbar avatar ---------- */
-
-.brand-avatar {
-  position: relative;
-  display: block;
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-  border-radius: 50%;
+.expertise-card::after,
+.work-card::after,
+.stat-item::after,
+.metric-badge::after,
+.testimonial-card::after,
+.channel-card::after,
+.contact-form-wrap::after,
+.hero-visual::after,
+.highlight-item::after {
   padding: 2px;
-  background: conic-gradient(
-    from var(--neon-angle),
-    #8b5cf6,
-    #22d3ee,
-    #e8c872,
-    #8b5cf6
-  );
-  box-shadow: 0 0 18px rgba(139, 92, 246, 0.55);
-  animation: neonSpin 8s linear infinite;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-}
-
-.brand:hover .brand-avatar {
-  transform: scale(1.08) rotate(-3deg);
-  box-shadow: 0 0 28px rgba(34, 211, 238, 0.7);
-}
-
-.brand-avatar img,
-.brand-avatar .profile-fallback {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #05060f;
-}
-
-/* ---------- About photo ---------- */
-
-.about-photo {
-  position: relative;
-  margin: 48px 0 0;
-  width: min(100%, 380px);
-  aspect-ratio: 4 / 5;
-  border-radius: 22px;
-  overflow: hidden;
-  background: linear-gradient(145deg, #1b1040, #090b1c);
-  box-shadow:
-    0 0 40px rgba(139, 92, 246, 0.3),
-    0 28px 70px rgba(0, 0, 0, 0.5);
-  isolation: isolate;
-}
-
-.about-photo-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-photo:hover .about-photo-img {
-  transform: scale(1.05);
-}
-
-/* slow neon light travelling round the frame */
-.about-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  border-radius: inherit;
-  padding: 2px;
-  pointer-events: none;
+  opacity: 1;
   background: conic-gradient(
     from var(--neon-angle),
     transparent 0deg,
-    #8b5cf6 40deg,
-    #22d3ee 65deg,
-    #ffffff 72deg,
+    rgba(139, 92, 246, 0.0) 10deg,
+    var(--neon-violet) 40deg,
+    var(--neon-cyan) 62deg,
+    #ffffff 70deg,
+    var(--neon-cyan) 78deg,
     transparent 105deg,
     transparent 180deg,
-    #e8c872 225deg,
-    transparent 285deg
+    rgba(232, 200, 114, 0.0) 190deg,
+    var(--gold) 220deg,
+    #fff6d6 250deg,
+    transparent 285deg,
+    transparent 360deg
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.9));
-  animation: neonSpin 14s linear infinite;
+  filter:
+    drop-shadow(0 0 4px rgba(34, 211, 238, 0.9))
+    drop-shadow(0 0 12px rgba(139, 92, 246, 0.7));
+  animation: neonSpin 14s linear infinite;   /* slow: raise for slower */
 }
 
-/* dark fade so the caption is always readable */
-.about-photo::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  z-index: 1;
-  background: linear-gradient(to top, rgba(5, 6, 15, 0.92), transparent);
-  pointer-events: none;
+/* keep the same slow speed on hover, just brighter */
+.expertise-card:hover::after,
+.work-card:hover::after,
+.stat-item:hover::after,
+.metric-badge:hover::after,
+.testimonial-card:hover::after,
+.channel-card:hover::after,
+.contact-form-wrap:hover::after,
+.hero-visual:hover::after,
+.highlight-item:hover::after {
+  animation-duration: 14s;
+  filter:
+    drop-shadow(0 0 6px rgba(34, 211, 238, 1))
+    drop-shadow(0 0 20px rgba(139, 92, 246, 0.95));
 }
 
-.about-photo-caption {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 20px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+/* offset start positions so blocks don't all move in sync */
+.expertise-grid > :nth-child(2) .expertise-card::after,
+.work-list > :nth-child(2) .work-card::after,
+.stats-strip > :nth-child(2)::after { animation-delay: -3.5s; }
 
-.about-photo-caption strong {
-  font-family: "Manrope", sans-serif;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  color: #fff;
-}
+.expertise-grid > :nth-child(3) .expertise-card::after,
+.work-list > :nth-child(3) .work-card::after,
+.stats-strip > :nth-child(3)::after { animation-delay: -7s; }
 
-.about-photo-caption span {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #e8c872;
-  text-transform: uppercase;
-}
+.expertise-grid > :nth-child(4) .expertise-card::after,
+.stats-strip > :nth-child(4)::after { animation-delay: -10.5s; }
 
-/* initials shown if the photo file is missing */
-.profile-fallback {
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
-  color: #fff;
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-}
-
-.about-photo .profile-fallback {
-  width: 100%;
-  height: 100%;
-  font-size: 90px;
-}
-
-@media (max-width: 768px) {
-  .about-photo {
-    margin-top: 32px;
-    width: min(100%, 320px);
-  }
-}
-
-/* ---------- Email card + form button (from the last update) ---------- */
-
-.channel-main {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 1;
-  min-width: 0;
-  color: inherit;
-}
-
-.form-submit:disabled {
-  opacity: 0.7;
-  cursor: progress;
-}
-
-/* ==========================================================
-   PROFILE PHOTO: add anywhere in your CSS (end of file is fine)
-   Also includes the email-card rules from channel-main.css
-   ========================================================== */
-
-@property --neon-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-/* ---------- Navbar avatar ---------- */
-
-.brand-avatar {
-  position: relative;
-  display: block;
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  padding: 2px;
-  background: conic-gradient(
-    from var(--neon-angle),
-    #8b5cf6,
-    #22d3ee,
-    #e8c872,
-    #8b5cf6
-  );
-  box-shadow: 0 0 18px rgba(139, 92, 246, 0.55);
-  animation: neonSpin 8s linear infinite;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-}
-
-.brand:hover .brand-avatar {
-  transform: scale(1.08) rotate(-3deg);
-  box-shadow: 0 0 28px rgba(34, 211, 238, 0.7);
-}
-
-.brand-avatar img,
-.brand-avatar .profile-fallback {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #05060f;
-}
-
-/* ---------- About photo ---------- */
-
-.about-photo {
-  position: relative;
-  margin: 48px 0 0;
-  width: min(100%, 380px);
-  aspect-ratio: 4 / 5;
-  border-radius: 22px;
-  overflow: hidden;
-  background: linear-gradient(145deg, #1b1040, #090b1c);
-  box-shadow:
-    0 0 40px rgba(139, 92, 246, 0.3),
-    0 28px 70px rgba(0, 0, 0, 0.5);
-  isolation: isolate;
-}
-
-.about-photo-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-photo:hover .about-photo-img {
-  transform: scale(1.05);
-}
-
-/* slow neon light travelling round the frame */
-.about-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  border-radius: inherit;
-  padding: 2px;
-  pointer-events: none;
-  background: conic-gradient(
-    from var(--neon-angle),
-    transparent 0deg,
-    #8b5cf6 40deg,
-    #22d3ee 65deg,
-    #ffffff 72deg,
-    transparent 105deg,
-    transparent 180deg,
-    #e8c872 225deg,
-    transparent 285deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.9));
-  animation: neonSpin 14s linear infinite;
-}
-
-/* dark fade so the caption is always readable */
-.about-photo::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  z-index: 1;
-  background: linear-gradient(to top, rgba(5, 6, 15, 0.92), transparent);
-  pointer-events: none;
-}
-
-.about-photo-caption {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 20px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.about-photo-caption strong {
-  font-family: "Manrope", sans-serif;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  color: #fff;
-}
-
-.about-photo-caption span {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #e8c872;
-  text-transform: uppercase;
-}
-
-/* initials shown if the photo file is missing */
-.profile-fallback {
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
-  color: #fff;
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-}
-
-.about-photo .profile-fallback {
-  width: 100%;
-  height: 100%;
-  font-size: 90px;
-}
-
-@media (max-width: 768px) {
-  .about-photo {
-    margin-top: 32px;
-    width: min(100%, 320px);
-  }
-}
-
-/* ---------- Email card + form button (from the last update) ---------- */
-
-.channel-main {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 1;
-  min-width: 0;
-  color: inherit;
-}
-
-.form-submit:disabled {
-  opacity: 0.7;
-  cursor: progress;
-}
-
-/* ---------- Top contact bar removed: header now starts at the very top ---------- */
-
-.top-bar {
-  display: none;
-}
-
-html {
-  scroll-padding-top: 90px;
+/* calm the glow breathing so it matches the slow light */
+.expertise-card,
+.work-card,
+.testimonial-card,
+.contact-form-wrap,
+.hero-visual {
+  animation-duration: 9s;
 }
 /* ==========================================================
    PROFILE PHOTO: add anywhere in your CSS (end of file is fine)
@@ -4645,4 +4344,121 @@ html {
   margin: 0;
   text-align: center;
   border-radius: 50%;
+}
+/* ==========================================================
+   PERFORMANCE BOOST: paste at the VERY END of your CSS
+   Keeps the look (neon light still travels round the main
+   blocks) but removes the effects that cost the most.
+   ========================================================== */
+
+/* 1. Glow filters on animated borders are the single most
+      expensive effect: the browser re-blurs them every frame. */
+.expertise-card::after,
+.work-card::after,
+.stat-item::after,
+.metric-badge::after,
+.testimonial-card::after,
+.channel-card::after,
+.contact-form-wrap::after,
+.hero-visual::after,
+.highlight-item::after,
+.about-photo::after,
+.principle-card::after {
+  filter: none !important;
+}
+
+/* 2. Small blocks only animate their border while hovered. */
+.stat-item::after,
+.metric-badge::after,
+.highlight-item::after,
+.channel-card::after {
+  animation-play-state: paused;
+  opacity: 0.45;
+}
+
+.stat-item:hover::after,
+.metric-badge:hover::after,
+.highlight-item:hover::after,
+.channel-card:hover::after {
+  animation-play-state: running;
+  opacity: 1;
+}
+
+/* 3. Stop the "breathing" glow (re-paints big shadows forever). */
+.expertise-card,
+.work-card,
+.testimonial-card,
+.contact-form-wrap,
+.hero-visual {
+  animation: none !important;
+}
+
+/* 4. Stop looping gradient-text and button-glow animations. */
+.hero-highlight,
+.stat-number,
+.metric-value,
+.visual-bottom-copy strong,
+.nav-contact,
+.button-dark,
+.form-submit {
+  animation: none !important;
+}
+
+/* 5. Don't render sections that are off-screen. */
+.about-section,
+.expertise-section,
+.work-section,
+.testimonials-section,
+.approach-section,
+.statement-section,
+.contact-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* 6. Sticky header: blur behind it is costly while scrolling. */
+.site-header {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(5, 6, 15, 0.96);
+}
+
+/* 7. Only promote layers while they are actually animating. */
+.reveal {
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  will-change: auto;
+}
+
+.marquee-inner {
+  will-change: transform;
+}
+
+/* 8. Phones: no travelling border lights at all. */
+@media (max-width: 768px) {
+  .expertise-card::after,
+  .work-card::after,
+  .testimonial-card::after,
+  .contact-form-wrap::after,
+  .hero-visual::after,
+  .about-photo::after,
+  .principle-card::after,
+  .brand-avatar {
+    animation: none !important;
+  }
+
+  .statement-section::before {
+    display: none;
+  }
+}
+
+/* ---------- Extra: found while measuring the real file ---------- */
+
+/* quote-section badge: blur behind it re-processes the photo every frame */
+.statement-photo-badge {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(15, 15, 39, 0.94);
 }
