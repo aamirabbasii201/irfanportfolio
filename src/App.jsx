@@ -832,6 +832,31 @@ function About() {
             <a href="#contact" className="inline-link">
               Let's work together <ArrowUpRight size={19} />
             </a>
+
+            {/* Fills the open space next to the portrait, without changing the About copy. */}
+            <div className="about-value-panel">
+              <div className="about-value-topline">
+                <span><Sparkles size={15} /> WHAT I BRING TO THE TABLE</span>
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </div>
+              <h3>Ideas are only the start. <em>Impact is the goal.</em></h3>
+              <div className="about-value-grid">
+                <div className="about-value-item">
+                  <span className="about-value-icon"><Target size={19} strokeWidth={1.7} /></span>
+                  <div>
+                    <strong>Clarity in strategy</strong>
+                    <span>Priorities connected to real business objectives.</span>
+                  </div>
+                </div>
+                <div className="about-value-item">
+                  <span className="about-value-icon"><TrendingUp size={19} strokeWidth={1.7} /></span>
+                  <div>
+                    <strong>Momentum in execution</strong>
+                    <span>Creative decisions guided by measurable insight.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
 
@@ -1160,7 +1185,7 @@ function Testimonials() {
                     <Star key={i} size={16} fill="currentColor" />
                   ))}
                 </div>
-                <small>Average from {30+TESTIMONIALS.length} client reviews</small>
+                <small>Average from {TESTIMONIALS.length} client reviews</small>
               </div>
             </div>
           </Reveal>
