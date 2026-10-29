@@ -48,15 +48,12 @@ const PROFILE = {
   photo: "/images/irfan.webp",
   role: "Senior Marketing Professional",
   headline: "I Build Brands That Move Businesses Forward.",
-  email: "irfanasghar@marketing.com",
-  phone: "+92 300 1234567",
-  whatsapp: "923001234567",
+  email: "irfanasghar.smg@gmail.com",
+  phone: "+92 304 8361862",
+  whatsapp: "923048361862",
   location: "Rawalpindi & Islamabad, Pakistan",
   availability: "Available For Q1 2027 Projects",
   linkedin: "https://www.linkedin.com/in/irfan-asghar-3a8722173/",
-  instagram: "https://instagram.com/irfanasghar",
-  facebook: "https://facebook.com/irfanasghar",
-  twitter: "https://twitter.com/irfanasghar",
 };
 
 /**
@@ -70,6 +67,7 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Expertise", href: "#expertise" },
   { label: "Focus Areas", href: "#work" },
+  { label: "Projects", href: "#projects" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Approach", href: "#approach" },
 ];
@@ -217,14 +215,6 @@ const PROCESS_STEPS = [
     description: "Bring strategy to life through coordinated campaigns, creative ideas, and disciplined delivery.",
     outputs: ["Campaign build & launch", "Creative rollout", "Cross-team coordination"],
   },
-  {
-    number: "04",
-    title: "Optimize",
-    duration: "Ongoing",
-    icon: SlidersHorizontal,
-    description: "Use meaningful performance insights to improve decisions and strengthen results.",
-    outputs: ["Performance review", "Budget reallocation", "Scale what works"],
-  },
 ];
 
 const PROMISES = ["One point of contact", "Weekly progress updates", "Transparent reporting"];
@@ -341,25 +331,6 @@ const LinkedinIcon = createBrandIcon(
   </>
 );
 
-const InstagramIcon = createBrandIcon(
-  "InstagramIcon",
-  <>
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </>
-);
-
-const FacebookIcon = createBrandIcon(
-  "FacebookIcon",
-  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-);
-
-const TwitterIcon = createBrandIcon(
-  "TwitterIcon",
-  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-);
-
 /* ==========================================================================
    HELPERS
    ========================================================================== */
@@ -383,9 +354,6 @@ const prefersReducedMotion = () =>
 const SOCIALS = [
   { id: "whatsapp", label: "WhatsApp", href: whatsappLink(), Icon: MessageCircle },
   { id: "linkedin", label: "LinkedIn", href: PROFILE.linkedin, Icon: LinkedinIcon },
-  { id: "instagram", label: "Instagram", href: PROFILE.instagram, Icon: InstagramIcon },
-  { id: "facebook", label: "Facebook", href: PROFILE.facebook, Icon: FacebookIcon },
-  { id: "twitter", label: "Twitter / X", href: PROFILE.twitter, Icon: TwitterIcon },
 ];
 
 /* ==========================================================================
@@ -1102,6 +1070,167 @@ function Work() {
   );
 }
 
+
+/* ==========================================================================
+   SELECTED MOBILE PROJECTS
+   Google Play install bands are approximate public thresholds, not exact totals.
+   Within the same band, the ordering is editorial, not a claim of precise rank.
+   ========================================================================== */
+
+const MARKETED_APPS = [
+  {
+    name: "Cloud Storage: Cloud Drive App",
+    category: "Cloud Storage & Backup",
+    downloads: "5M+",
+    downloadFloor: 5000000,
+    description: "Cloud backup, photo and video storage, secure file access, and effortless restore.",
+    url: "https://play.google.com/store/apps/details?id=com.fazconapps.backup.restore.data",
+    icon: "https://play-lh.googleusercontent.com/-D_rTljw18usqyOwuoCRRpbDBaHvS1DH6A_ML9coasJ6U4MvUVPYIYKSScE9tjzKRJMmfZE6t_filhn3icgf=w240-h480",
+    accent: "sky",
+  },
+  {
+    name: "Smart Mobile Switch PhoneClone",
+    category: "Phone Clone & Data Transfer",
+    downloads: "5M+",
+    downloadFloor: 5000000,
+    description: "Simple phone-to-phone migration for contacts, photos, videos, and files.",
+    url: "https://play.google.com/store/apps/details?id=com.phoneclone.sendanywhere.mobiletransfer.easymover.smartswitch",
+    icon: "https://play-lh.googleusercontent.com/hHCD6k-XAgrpFNIfM6V5fBMq1Yvt9Qg3cZf0jcD9Rooz-HzXotYYpipZVpJSG8oLL8o_cVyLYQYfJAnMlgfX=w240-h480",
+    accent: "violet",
+  },
+  {
+    name: "eEagle VPN Secure Proxy Master",
+    category: "VPN & Online Privacy",
+    downloads: "1M+",
+    downloadFloor: 1000000,
+    description: "A VPN utility focused on secure connections, privacy, and public Wi-Fi protection.",
+    url: "https://play.google.com/store/apps/details?id=com.eeaglevpn.vpn",
+    icon: "https://play-lh.googleusercontent.com/A971kqzwLu11aQRyZ9kkw5sNUEAHDSu9oEizSntQDDaUTC7TFwwDW1tuC7QL3qOyDYGlUeEuS5ix_eC5ZlFj=w240-h480",
+    accent: "gold",
+  },
+  {
+    name: "GPS Maps Voice Navigation",
+    category: "Maps & Navigation",
+    downloads: "1M+",
+    downloadFloor: 1000000,
+    description: "Route finding, voice guidance, nearby places, and useful travel tools.",
+    url: "https://play.google.com/store/apps/details?id=com.voicenavigation.gpslocation.routefinder.mapdirection",
+    icon: "https://play-lh.googleusercontent.com/I4ZQ9QRrMi0fyJYUvoTpkX2ed1dycN4667pskme5ioHQIuXnZln_SXjHH_NWq6-V73c3BA9Z5CO67_37OfbObA=w240-h480",
+    accent: "mint",
+  },
+  {
+    name: "Switch Mobile - Phone Clone",
+    category: "File Sharing & Smart Switch",
+    downloads: "1M+",
+    downloadFloor: 1000000,
+    description: "Move data between devices and share files over a direct wireless connection.",
+    url: "https://play.google.com/store/apps/details?id=com.smartswitch.phonetransfer.phoneclone.datatransfer.copymydata.newphone",
+    icon: "https://play-lh.googleusercontent.com/9sKpJudRQp-phA7SXcew1Mplub0IRBTUZqmlW-QaJ70R16kx4sdYM1bDrKbnhh6eOuZilluiyYm0ADdB_OyK=w240-h480",
+    accent: "blue",
+  },
+  {
+    name: "Cloud Storage Drive Backup app",
+    category: "Cloud Drive & Backup",
+    downloads: "500K+",
+    downloadFloor: 500000,
+    description: "Back up and restore essential media, contacts, and documents with cloud storage tools.",
+    url: "https://play.google.com/store/apps/details?id=com.cloudstorage.backupapp.storagespace.mycloud.clouldbackup",
+    icon: "https://play-lh.googleusercontent.com/5vtGG3F-r0WE_EmA0RrYRDqmc9P4UegxuTUWrXxY7iAco5LKoqYj5h8LyD4aSzvmFZUbCjOzweGTeqSna-hGpUM=w240-h480",
+    accent: "rose",
+  },
+].sort((a, b) => b.downloadFloor - a.downloadFloor);
+
+function MarketedAppIcon({ app }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  return (
+    <span className="marketed-icon" aria-hidden="true">
+      {imageFailed ? (
+        <Layers3 size={30} strokeWidth={1.5} />
+      ) : (
+        <img
+          src={app.icon}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
+        />
+      )}
+    </span>
+  );
+}
+
+function Projects() {
+  return (
+    <section className="marketed-section section-padding" id="projects">
+      <div className="container-wide">
+        <Reveal>
+          <SectionLabel number="04" light>PROJECTS</SectionLabel>
+        </Reveal>
+        <div className="marketed-heading-row">
+          <Reveal>
+            <div>
+              <span className="marketed-overline"><span /> SELECTED MOBILE PROJECTS / REAL-WORLD REACH</span>
+              <h2 className="display-heading light-heading">
+                Projects with <span className="serif-accent">impact.</span>
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <p className="marketed-intro">
+              A selection of mobile apps I've helped grow through marketing.
+              Explore each project directly on Google Play.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="marketed-grid">
+          {MARKETED_APPS.map((app, index) => (
+            <Reveal key={app.url} delay={(index % 2) * 90} className="marketed-reveal">
+              <a
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`marketed-card marketed-${app.accent} ${app.downloadFloor >= 5000000 ? "marketed-featured" : ""}`}
+                aria-label={`View ${app.name} on Google Play (opens in a new tab)`}
+              >
+                <div className="marketed-card-top">
+                  <span className="marketed-index">PROJECT / {String(index + 1).padStart(2, "0")}</span>
+                  <span className="marketed-open"><ArrowUpRight size={20} strokeWidth={1.8} /></span>
+                </div>
+                <div className="marketed-card-main">
+                  <MarketedAppIcon app={app} />
+                  <div className="marketed-card-content">
+                    <span className="marketed-category">{app.category}</span>
+                    <h3>{app.name}</h3>
+                    <p>{app.description}</p>
+                  </div>
+                </div>
+                <div className="marketed-card-bottom">
+                  <span className="marketed-download-count"><TrendingUp size={17} /> {app.downloads} <small>downloads</small></span>
+                  <span className="marketed-store-link">VIEW ON GOOGLE PLAY <ArrowUpRight size={16} /></span>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={100}>
+          <div className="marketed-footer">
+            <span>Download figures are Google Play public install ranges; products are ordered by range.</span>
+            <a
+              href="https://play.google.com/store/apps/dev?id=7259835822102989148"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore MindByte Studios <ArrowUpRight size={17} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ==========================================================================
    TESTIMONIALS
    ========================================================================== */
@@ -1163,7 +1292,7 @@ function Testimonials() {
     <section className="testimonials-section section-padding" id="testimonials">
       <div className="container-wide">
         <Reveal>
-          <SectionLabel number="04" light>
+          <SectionLabel number="05" light>
             WHAT CLIENTS SAY
           </SectionLabel>
         </Reveal>
@@ -1298,45 +1427,152 @@ function ProcessStep({ step, index, isLast, onActivate }) {
   );
 }
 
-const FINALE_RESULTS = [
-  { value: "Clear KPIs", label: "agreed before launch" },
-  { value: "Steady growth", label: "built on what works" },
-  { value: "Aligned team", label: "everyone on one plan" },
+/** Outcomes are presented with the same visual hierarchy as the growth card. */
+const RESULT_PILLARS = [
+  {
+    icon: Target,
+    label: "CLARITY",
+    title: "Know what matters",
+    copy: "Clear priorities and measurable next steps.",
+  },
+  {
+    icon: Users,
+    label: "ALIGNMENT",
+    title: "Move as one team",
+    copy: "Shared direction across people and channels.",
+  },
+  {
+    icon: BarChart3,
+    label: "PROOF",
+    title: "See meaningful progress",
+    copy: "Insights connected to real business outcomes.",
+  },
 ];
 
-function FinaleStep() {
-  const [ref, active] = useInViewOnce({ threshold: 0.4, rootMargin: "0px 0px -8% 0px" });
+/** An editorial, non-numbered outcome card — not an additional project phase. */
+const GROWTH_PILLARS = [
+  {
+    icon: Target,
+    label: "FOCUS",
+    title: "Find the signal",
+    copy: "Know which opportunities deserve attention.",
+  },
+  {
+    icon: BarChart3,
+    label: "LEARN",
+    title: "Act on insight",
+    copy: "Turn performance data into smarter choices.",
+  },
+  {
+    icon: TrendingUp,
+    label: "GROW",
+    title: "Build momentum",
+    copy: "Strengthen what works, one decision at a time.",
+  },
+];
+
+function GrowthMomentumCard() {
+  const [ref, visible] = useInViewOnce({ threshold: 0.15 });
 
   return (
-    <li ref={ref} className={`approach-step approach-finale ${active ? "is-active" : ""}`.trim()}>
-      <div className="approach-rail" aria-hidden="true">
-        <span className="approach-node">
-          <Flag size={22} strokeWidth={1.6} />
+    <div ref={ref} className={`approach-growth-wrap ${visible ? "is-active" : ""}`}>
+      <div className="approach-growth-rail" aria-hidden="true">
+        <span className="approach-growth-node">
+          <TrendingUp size={22} strokeWidth={1.7} />
         </span>
       </div>
 
-      <article className="approach-card finale-card">
-        <span className="approach-phase">THE RESULT</span>
-        <h3>Growth you can measure.</h3>
-        <p>
-          By the end, you have a working marketing system: a clear plan, a team that knows it, and numbers that
-          show what is working.
+      <article className="approach-growth-card">
+        <div className="approach-growth-header">
+          <span className="approach-growth-kicker">
+            <span className="approach-growth-pulse" />
+            BUILT FOR WHAT COMES NEXT
+          </span>
+          <Sparkles size={20} strokeWidth={1.6} aria-hidden="true" />
+        </div>
+
+        <h3>Beyond the <span>launch.</span></h3>
+        <p className="approach-growth-description">
+          Great campaigns create progress. Great marketing systems
+          turn that progress into lasting momentum — with insight,
+          intention, and the confidence to make the next move.
         </p>
 
-        <div className="finale-results">
-          {FINALE_RESULTS.map(({ value, label }) => (
-            <div key={value}>
-              <strong>{value}</strong>
-              <span>{label}</span>
+        <div className="approach-growth-pillars">
+          {GROWTH_PILLARS.map(({ icon: Icon, label, title, copy }) => (
+            <div className="approach-growth-pillar" key={label}>
+              <span className="approach-growth-pillar-icon"><Icon size={17} strokeWidth={1.8} /></span>
+              <div>
+                <small>{label}</small>
+                <strong>{title}</strong>
+                <p>{copy}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <a href="#contact" className="finale-link">
-          Start a project <ArrowUpRight size={19} />
-        </a>
+        <div className="approach-growth-bottom">
+          <span><CheckCircle size={17} /> A clearer path to sustainable growth</span>
+          <a href="#contact" aria-label="Discuss sustainable growth">
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
       </article>
-    </li>
+    </div>
+  );
+}
+
+/** The Result uses the exact same skeleton and sizing as Beyond the Launch. */
+function FinaleStep() {
+  const [ref, visible] = useInViewOnce({ threshold: 0.15 });
+
+  return (
+    <div ref={ref} className={`approach-growth-wrap approach-result-wrap ${visible ? "is-active" : ""}`}>
+      <div className="approach-growth-rail" aria-hidden="true">
+        <span className="approach-growth-node">
+          <Flag size={22} strokeWidth={1.7} />
+        </span>
+      </div>
+
+      <article className="approach-growth-card approach-result-card">
+        <div className="approach-growth-header">
+          <span className="approach-growth-kicker">
+            <span className="approach-growth-pulse" />
+            THE IMPACT YOU CAN SEE
+          </span>
+          <CheckCircle size={20} strokeWidth={1.6} aria-hidden="true" />
+        </div>
+
+        <h3>Results that <span>last.</span></h3>
+        <p className="approach-growth-description">
+          Strong results are more than a good report. They bring everyone onto
+          the same page, make next steps obvious, and turn marketing effort
+          into progress your business can see and build upon.
+        </p>
+
+        <div className="approach-growth-pillars">
+          {RESULT_PILLARS.map(({ icon: Icon, label, title, copy }) => (
+            <div className="approach-growth-pillar" key={label}>
+              <span className="approach-growth-pillar-icon">
+                <Icon size={17} strokeWidth={1.8} />
+              </span>
+              <div>
+                <small>{label}</small>
+                <strong>{title}</strong>
+                <p>{copy}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="approach-growth-bottom">
+          <span><CheckCircle size={17} /> A smarter foundation for what is next</span>
+          <a href="#contact" aria-label="Start a project focused on measurable results">
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
+      </article>
+    </div>
   );
 }
 
@@ -1351,7 +1587,7 @@ function Approach() {
     <section className="approach-section section-padding" id="approach">
       <div className="container-wide">
         <Reveal>
-          <SectionLabel number="05">THE WAY I WORK</SectionLabel>
+          <SectionLabel number="06">THE WAY I WORK</SectionLabel>
         </Reveal>
 
         {/* One aligned two-column layout: context on the left, the first
@@ -1420,25 +1656,20 @@ function Approach() {
           </ol>
         </div>
 
-        {/* Equal-width, aligned closing cards on desktop; stacked on mobile. */}
+        {/* Parallel, number-free growth and result cards; stacked on mobile. */}
         <div className="approach-finish">
           <div className="approach-finish-heading">
             <div>
-              <span className="approach-finish-eyebrow">FINAL PHASE / LASTING OUTCOME</span>
+              <span className="approach-finish-eyebrow">BEYOND THE PROCESS / LASTING OUTCOMES</span>
               <h3>From action to measurable impact.</h3>
             </div>
             <p>Make what works stronger, and turn the learning into long-term growth.</p>
           </div>
 
-          <ol className="approach-finish-grid" aria-label="Optimization and results">
-            <ProcessStep
-              step={PROCESS_STEPS[3]}
-              index={3}
-              isLast={true}
-              onActivate={handleActivate}
-            />
+          <div className="approach-finish-grid" aria-label="Growth momentum and results">
+            <GrowthMomentumCard />
             <FinaleStep />
-          </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -1675,7 +1906,7 @@ function Contact() {
     <section className="contact-section" id="contact">
       <div className="container-wide">
         <Reveal>
-          <SectionLabel number="06" light>
+          <SectionLabel number="07" light>
             LET'S CONNECT
           </SectionLabel>
         </Reveal>
@@ -1810,6 +2041,7 @@ export default function App() {
         <About />
         <Expertise />
         <Work />
+        <Projects />
         <Testimonials />
         <Approach />
         <Statement />
