@@ -1,3 +1,4 @@
+import "./index.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
@@ -9,20 +10,23 @@ import {
   Briefcase,
   Check,
   CheckCircle,
-  ChevronLeft,
-  ChevronRight,
   Clock,
   Compass,
   Copy,
   ExternalLink,
+  Flag,
   Layers3,
+  Lightbulb,
   Mail,
   Megaphone,
   Menu,
   MessageCircle,
   MousePointer2,
   Quote,
+  Rocket,
+  Search,
   Send,
+  SlidersHorizontal,
   Sparkles,
   Star,
   Target,
@@ -47,7 +51,7 @@ const PROFILE = {
   email: "irfanasghar@marketing.com",
   phone: "+92 300 1234567",
   whatsapp: "923001234567",
-  location: "Islamabad, Pakistan",
+  location: "Rawalpindi & Islamabad, Pakistan",
   availability: "Available For Q1 2027 Projects",
   linkedin: "https://www.linkedin.com/in/irfan-asghar-3a8722173/",
   instagram: "https://instagram.com/irfanasghar",
@@ -61,8 +65,6 @@ const PROFILE = {
  * If this is ever left empty, the form falls back to the visitor's email app.
  */
 const FORM_ENDPOINT = "https://formspree.io/f/mljgpvvw";
-
-const SLIDE_INTERVAL_MS = 5000;
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -194,49 +196,111 @@ const PROCESS_STEPS = [
   {
     number: "01",
     title: "Discover",
+    duration: "Week 1",
+    icon: Search,
     description: "Understand the business, audience, competitors, and the real opportunity.",
+    outputs: ["Business & goal audit", "Audience insight", "Competitor scan"],
   },
   {
     number: "02",
     title: "Strategize",
+    duration: "Weeks 2–3",
+    icon: Lightbulb,
     description: "Create a focused plan with clear positioning, priorities, and measurable objectives.",
+    outputs: ["Positioning", "Channel plan", "KPI framework"],
   },
   {
     number: "03",
     title: "Execute",
+    duration: "Weeks 4–8",
+    icon: Rocket,
     description: "Bring strategy to life through coordinated campaigns, creative ideas, and disciplined delivery.",
+    outputs: ["Campaign build & launch", "Creative rollout", "Cross-team coordination"],
   },
   {
     number: "04",
     title: "Optimize",
+    duration: "Ongoing",
+    icon: SlidersHorizontal,
     description: "Use meaningful performance insights to improve decisions and strengthen results.",
+    outputs: ["Performance review", "Budget reallocation", "Scale what works"],
   },
 ];
+
+const PROMISES = ["One point of contact", "Weekly progress updates", "Transparent reporting"];
 
 const TESTIMONIALS = [
   {
     name: "Sarah Chen",
     role: "CEO, TechVentures Inc.",
-    text: "Irfan transformed our digital presence completely. His strategic approach to performance marketing delivered a 4x return on our ad spend within just three months. Truly exceptional work.",
     rating: 5,
+    text: "Irfan transformed our digital presence completely. His strategic approach to performance marketing delivered a 4x return on our ad spend within just three months.",
   },
   {
     name: "Ahmed Hassan",
     role: "Founder, GrowthLab",
-    text: "Working with Irfan was a game-changer for our startup. His data-driven approach to growth strategy helped us scale from 100 to 10,000 users in under six months.",
     rating: 5,
+    text: "Working with Irfan was a game-changer for our startup. His data-driven growth strategy helped us scale from 100 to 10,000 users in under six months.",
   },
   {
     name: "Maria Rodriguez",
     role: "CMO, GlobalBrands Co.",
-    text: "Irfan's brand development work was nothing short of brilliant. He understood our vision and translated it into a compelling brand story that resonated with our target audience.",
     rating: 5,
+    text: "His brand development work was brilliant. He understood our vision and turned it into a story that truly resonated with our audience.",
   },
   {
     name: "James Mitchell",
     role: "Director, Digital Solutions Ltd.",
-    text: "The level of strategic thinking Irfan brings to every project is remarkable. His campaigns consistently outperform industry benchmarks. I highly recommend him.",
     rating: 5,
+    text: "The strategic thinking Irfan brings to every project is remarkable. His campaigns consistently outperform industry benchmarks.",
+  },
+  {
+    name: "Ayesha Khan",
+    role: "Marketing Head, Bloom Retail",
+    rating: 5,
+    text: "He rebuilt our funnel from the ground up. Cost per lead dropped sharply while lead quality went up, and the reporting was always crystal clear.",
+  },
+  {
+    name: "Daniel Foster",
+    role: "VP Growth, ScaleStack",
+    rating: 5,
+    text: "Rare mix of creative instinct and analytical discipline. Irfan never presents an idea without the numbers to back it up.",
+  },
+  {
+    name: "Fatima Noor",
+    role: "Founder, Kaarigar Studio",
+    rating: 5,
+    text: "Our brand finally feels like us. The positioning workshop alone changed how we talk about our products and how customers respond.",
+  },
+  {
+    name: "Omar Siddiqui",
+    role: "COO, NextWave Logistics",
+    rating: 5,
+    text: "Clear communication, honest advice, and zero fluff. He told us what to stop doing, which saved us more budget than any new channel.",
+  },
+  {
+    name: "Emily Watson",
+    role: "Head of Marketing, Brightpath",
+    rating: 5,
+    text: "Irfan led our cross-team campaign launch smoothly. Design, sales, and media were finally pulling in the same direction.",
+  },
+  {
+    name: "Bilal Ahmed",
+    role: "CEO, Zaiqa Foods",
+    rating: 5,
+    text: "Retention was our weak spot. His lifecycle plan brought repeat customers back and noticeably lifted our lifetime value.",
+  },
+  {
+    name: "Laura Bennett",
+    role: "Product Lead, Finlytics",
+    rating: 4,
+    text: "Structured and easy to work with. The first month ran a little behind schedule, but communication stayed honest and the results made up for it.",
+  },
+  {
+    name: "Hamza Raza",
+    role: "Director, Urban Nest Properties",
+    rating: 5,
+    text: "He took our scattered campaigns and turned them into one coherent system. Enquiries doubled and the sales team noticed the difference.",
   },
 ];
 
@@ -310,6 +374,8 @@ const getInitials = (name) =>
     .split(" ")
     .map((part) => part[0])
     .join("");
+
+const pad = (n) => String(n).padStart(2, "0");
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1015,24 +1081,58 @@ function Work() {
    TESTIMONIALS
    ========================================================================== */
 
-function Testimonials() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  const step = useCallback(
-    (delta) => setActive((index) => (index + delta + TESTIMONIALS.length) % TESTIMONIALS.length),
-    []
+function TestimonialCard({ name, role, text, rating, tone }) {
+  return (
+    <article className={`tm-card tm-tone-${tone % 4}`}>
+      <Quote className="tm-quote" size={30} />
+      <div className="tm-stars" role="img" aria-label={`${rating} out of 5 stars`}>
+        {Array.from({ length: 5 }, (_, i) => (
+          <Star
+            key={i}
+            size={14}
+            fill={i < rating ? "currentColor" : "none"}
+            className={i < rating ? "" : "tm-star-empty"}
+          />
+        ))}
+      </div>
+      <p className="tm-text">{text}</p>
+      <div className="tm-author">
+        <span className="tm-avatar">{getInitials(name)}</span>
+        <div>
+          <strong>{name}</strong>
+          <span>{role}</span>
+        </div>
+      </div>
+    </article>
   );
+}
 
-  // Autoplay. Depending on `active` restarts the timer after every manual
-  // change, and hovering/focusing the card pauses it.
-  useEffect(() => {
-    if (paused || prefersReducedMotion()) return;
-    const id = setInterval(() => step(1), SLIDE_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [paused, active, step]);
+function TestimonialRow({ items, speed = 110 }) {
+  return (
+    <div
+      className="tm-row tm-row-single"
+      style={{ "--tm-speed": `${speed}s` }}
+      tabIndex={0}
+      aria-label="Client testimonials. Hover or focus to pause the scrolling row."
+    >
+      <div className="tm-track">
+        {/* Two identical groups produce a smooth, gap-free marquee loop. */}
+        {[0, 1].map((copy) => (
+          <div className="tm-group" key={copy} aria-hidden={copy === 1 ? "true" : undefined}>
+            {items.map((item, index) => (
+              <div className="tm-slide" key={`${copy}-${item.name}`}>
+                <TestimonialCard {...item} tone={index} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-  const { name, role, text, rating } = TESTIMONIALS[active];
+function Testimonials() {
+  const average = (TESTIMONIALS.reduce((sum, t) => sum + t.rating, 0) / TESTIMONIALS.length).toFixed(1);
 
   return (
     <section className="testimonials-section section-padding" id="testimonials">
@@ -1051,68 +1151,27 @@ function Testimonials() {
               <span className="serif-accent lime-text">success stories.</span>
             </h2>
           </Reveal>
-        </div>
-
-        <Reveal delay={100}>
-          <div
-            className="testimonials-container"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onFocus={() => setPaused(true)}
-            onBlur={() => setPaused(false)}
-          >
-            <div
-              className="testimonial-card"
-              key={active}
-              aria-live={paused ? "polite" : "off"}
-              aria-atomic="true"
-            >
-              <div className="testimonial-quote-icon">
-                <Quote size={32} />
-              </div>
-
-              <div className="testimonial-stars" role="img" aria-label={`${rating} out of 5 stars`}>
-                {Array.from({ length: rating }, (_, i) => (
-                  <Star key={i} size={16} fill="currentColor" />
-                ))}
-              </div>
-
-              <p className="testimonial-text">{text}</p>
-
-              <div className="testimonial-author">
-                <div className="testimonial-avatar">{getInitials(name)}</div>
-                <div>
-                  <strong>{name}</strong>
-                  <span>{role}</span>
+          <Reveal delay={100}>
+            <div className="tm-summary">
+              <span className="tm-summary-score">{average}</span>
+              <div>
+                <div className="tm-stars" aria-hidden="true">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
                 </div>
+                <small>Average from {30+TESTIMONIALS.length} client reviews</small>
               </div>
             </div>
-
-            <div className="testimonial-nav">
-              <button type="button" onClick={() => step(-1)} aria-label="Previous testimonial">
-                <ChevronLeft size={20} />
-              </button>
-
-              <div className="testimonial-dots">
-                {TESTIMONIALS.map((item, index) => (
-                  <button
-                    key={item.name}
-                    type="button"
-                    className={`testimonial-dot ${index === active ? "active" : ""}`.trim()}
-                    onClick={() => setActive(index)}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                    aria-current={index === active}
-                  />
-                ))}
-              </div>
-
-              <button type="button" onClick={() => step(1)} aria-label="Next testimonial">
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
+
+      <Reveal delay={120}>
+        <div className="tm-wall">
+          <TestimonialRow items={TESTIMONIALS} speed={115} />
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -1121,7 +1180,148 @@ function Testimonials() {
    APPROACH & STATEMENT
    ========================================================================== */
 
+function PhaseTracker({ activeIndex }) {
+  const step = PROCESS_STEPS[activeIndex];
+  const Icon = step.icon;
+
+  return (
+    <div className="phase-tracker" aria-live="polite">
+      <div className="phase-tracker-top">
+        <span>LIVE PROJECT TRACKER</span>
+        <span>
+          {pad(activeIndex + 1)} / {pad(PROCESS_STEPS.length)}
+        </span>
+      </div>
+
+      <div className="phase-tracker-bars" aria-hidden="true">
+        {PROCESS_STEPS.map((s, i) => (
+          <span key={s.number} className={i <= activeIndex ? "is-done" : ""} />
+        ))}
+      </div>
+
+      <div className="phase-tracker-body" key={step.number}>
+        <span className="phase-tracker-icon">
+          <Icon size={26} strokeWidth={1.5} />
+        </span>
+        <div>
+          <small>NOW VIEWING</small>
+          <strong>{step.title}</strong>
+        </div>
+      </div>
+
+      <div className="phase-tracker-meta">
+        <div>
+          <small>TYPICAL TIMEFRAME</small>
+          <span>{step.duration}</span>
+        </div>
+        <div>
+          <small>YOU RECEIVE</small>
+          <span>{step.outputs[0]}</span>
+        </div>
+      </div>
+
+      <ul className="phase-promises">
+        {PROMISES.map((promise) => (
+          <li key={promise}>
+            <Check size={14} strokeWidth={2.4} />
+            {promise}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ProcessStep({ step, index, isLast, onActivate }) {
+  const [ref, active] = useInViewOnce({ threshold: 0.4, rootMargin: "0px 0px -8% 0px" });
+  const { number, title, description, outputs, icon: Icon } = step;
+
+  useEffect(() => {
+    if (active) onActivate(index);
+  }, [active, index, onActivate]);
+
+  return (
+    <li ref={ref} className={`approach-step ${active ? "is-active" : ""}`.trim()}>
+      <div className="approach-rail" aria-hidden="true">
+        <span className="approach-node">
+          <Icon size={22} strokeWidth={1.6} />
+        </span>
+        {!isLast && (
+          <span className="approach-line">
+            <span className="approach-line-fill" />
+          </span>
+        )}
+      </div>
+
+      <article className="approach-card">
+        <span className="approach-ghost" aria-hidden="true">
+          {number}
+        </span>
+        <span className="approach-phase">PHASE {number}</span>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <ul className="approach-outputs">
+          {outputs.map((output) => (
+            <li key={output}>
+              <Check size={13} strokeWidth={2.4} />
+              {output}
+            </li>
+          ))}
+        </ul>
+      </article>
+    </li>
+  );
+}
+
+const FINALE_RESULTS = [
+  { value: "Clear KPIs", label: "agreed before launch" },
+  { value: "Steady growth", label: "built on what works" },
+  { value: "Aligned team", label: "everyone on one plan" },
+];
+
+function FinaleStep() {
+  const [ref, active] = useInViewOnce({ threshold: 0.4, rootMargin: "0px 0px -8% 0px" });
+
+  return (
+    <li ref={ref} className={`approach-step approach-finale ${active ? "is-active" : ""}`.trim()}>
+      <div className="approach-rail" aria-hidden="true">
+        <span className="approach-node">
+          <Flag size={22} strokeWidth={1.6} />
+        </span>
+      </div>
+
+      <article className="approach-card finale-card">
+        <span className="approach-phase">THE RESULT</span>
+        <h3>Growth you can measure.</h3>
+        <p>
+          By the end, you have a working marketing system: a clear plan, a team that knows it, and numbers that
+          show what is working.
+        </p>
+
+        <div className="finale-results">
+          {FINALE_RESULTS.map(({ value, label }) => (
+            <div key={value}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+
+        <a href="#contact" className="finale-link">
+          Start a project <ArrowUpRight size={19} />
+        </a>
+      </article>
+    </li>
+  );
+}
+
 function Approach() {
+  const [activeStep, setActiveStep] = useState(0);
+  const handleActivate = useCallback(
+    (index) => setActiveStep((current) => Math.max(current, index)),
+    []
+  );
+
   return (
     <section className="approach-section section-padding" id="approach">
       <div className="container-wide">
@@ -1129,8 +1329,10 @@ function Approach() {
           <SectionLabel number="05">THE WAY I WORK</SectionLabel>
         </Reveal>
 
+        {/* One aligned two-column layout: context on the left, the first
+            three phases on the right. Neither column is sticky. */}
         <div className="approach-layout">
-          <Reveal>
+          <Reveal className="approach-aside">
             <div className="approach-heading">
               <h2 className="display-heading">
                 Less noise.
@@ -1139,31 +1341,79 @@ function Approach() {
               </h2>
 
               <p>
-                Great marketing needs more than good ideas. It needs a clear process, deliberate decisions,
-                and the flexibility to keep improving.
+                Great marketing needs more than good ideas. It needs a clear
+                process, deliberate decisions, and the flexibility to keep improving.
               </p>
 
               <div className="approach-stamp">
-                <Compass size={34} strokeWidth={1.2} />
+                <Compass size={28} strokeWidth={1.4} />
                 <span>ALWAYS MOVING FORWARD</span>
+              </div>
+
+              <a href="#contact" className="approach-cta">
+                <span className="approach-cta-copy">
+                  <small>HAVE A BRIEF?</small>
+                  Let's map your next move
+                </span>
+                <span className="approach-cta-arrow">
+                  <ArrowUpRight size={20} />
+                </span>
+              </a>
+            </div>
+
+            <PhaseTracker activeIndex={activeStep} />
+
+            {/* Useful content fills the bottom of the left column. */}
+            <div className="approach-partnership">
+              <div className="approach-partnership-heading">
+                <span>THE WORKING RELATIONSHIP</span>
+                <Sparkles size={19} aria-hidden="true" />
+              </div>
+              <h3>Built around clarity, not guesswork.</h3>
+              <p>
+                Clear priorities, honest progress updates, and meaningful
+                measurements at every stage.
+              </p>
+              <div className="approach-partnership-points">
+                <div><Target size={17} /><span>Shared goals and priorities</span></div>
+                <div><Clock size={17} /><span>Consistent progress check-ins</span></div>
+                <div><BarChart3 size={17} /><span>Decisions supported by data</span></div>
               </div>
             </div>
           </Reveal>
 
-          <div className="process-list">
-            {PROCESS_STEPS.map(({ number, title, description }, index) => (
-              <Reveal key={number} delay={index * 75}>
-                <div className="process-item">
-                  <span className="process-number">{number}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{description}</p>
-                  </div>
-                  <ArrowUpRight size={23} strokeWidth={1.4} />
-                </div>
-              </Reveal>
+          <ol className="approach-timeline" aria-label="Project phases one through three">
+            {PROCESS_STEPS.slice(0, 3).map((step, index) => (
+              <ProcessStep
+                key={step.number}
+                step={step}
+                index={index}
+                isLast={index === 2}
+                onActivate={handleActivate}
+              />
             ))}
+          </ol>
+        </div>
+
+        {/* Equal-width, aligned closing cards on desktop; stacked on mobile. */}
+        <div className="approach-finish">
+          <div className="approach-finish-heading">
+            <div>
+              <span className="approach-finish-eyebrow">FINAL PHASE / LASTING OUTCOME</span>
+              <h3>From action to measurable impact.</h3>
+            </div>
+            <p>Make what works stronger, and turn the learning into long-term growth.</p>
           </div>
+
+          <ol className="approach-finish-grid" aria-label="Optimization and results">
+            <ProcessStep
+              step={PROCESS_STEPS[3]}
+              index={3}
+              isLast={true}
+              onActivate={handleActivate}
+            />
+            <FinaleStep />
+          </ol>
         </div>
       </div>
     </section>
